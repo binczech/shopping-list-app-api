@@ -20,24 +20,15 @@ mongoose.connect(
 )
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('connected to database'))
+db.once('open', () => console.log('Connected to database'))
 
 app.get('/', (req, res) => {
-  res.send('Endpoints: /users, /users/:userID /users/:userID, /leaflet')
+  res.send('Endpoints: GET, POST /users, GET, PATCH, DELETE /users/:userID')
 })
 
-app.post('/users/register', (req, res) => {
-  console.log(req.body.name)
-  res.sendStatus(200)
-})
+const usersRouter = require('./routes/users')
+app.use('/users', usersRouter)
 
-app.post ('/users/', (req, res) => {
-  res.send("OK")
-})
-
-app.post ('/users/:userID', (req, res) => {
-  res.send("OK")
-})
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
