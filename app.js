@@ -27,7 +27,9 @@ app.get('/', (req, res) => {
 })
 
 const usersRouter = require('./routes/users')
+const shoppingListsRouter = require('./routes/shoppingLists')
 app.use('/users', usersRouter)
+app.use('/shopping-list', shoppingListsRouter)
 
 
 app.listen(port, () => {
